@@ -8,11 +8,12 @@ URL:
 
 ## Usage
 
+**Import**
 - First Import Library
 `import ServerHandler`
 
-- Setting initial configuration
-Setting up intial configuration for some values to be reused easily.
+**Setting initial configuration**
+- Setting up intial configuration for some values to be reused easily.
 
 ```swift
 ServerHandlerConstants.shared.configure(baseURL: "", // Provide base url for server
@@ -26,8 +27,8 @@ ServerHandlerConstants.shared.setBearerAuthorizationToken(token: "")
 ServerHandlerConstants.shared.setHeaders([String : String])
 ```
 
-- Creating JSON response struct
-To create struct for json response, the struct must conform to `CodableJsonProtocol`.
+**Creating JSON response struct**
+- To create struct for json response, the struct must conform to `CodableJsonProtocol`.
 
 ```swift
 struct JSONResponse: CodableJsonProtocol {
@@ -37,8 +38,8 @@ struct JSONResponse: CodableJsonProtocol {
 }
 ```
 
-- Creating URLBuilder
-The url builder is created for each request along with JSON response struct. To create a url builder, create a struct and conform it `APIURLBuilderProtocol`
+**Creating URLBuilder**
+- The url builder is created for each request along with JSON response struct. To create a url builder, create a struct and conform it `APIURLBuilderProtocol`
 
 ```swift
 struct ExampleURLBuilder: APIURLBuilderProtocol {
@@ -59,9 +60,9 @@ struct ExampleURLBuilder: APIURLBuilderProtocol {
     }
 }
 ``` 
-The above implementation contains the minimum required properties in order for `APIURLBuilderProtocol` to work.
+- The above implementation contains the minimum required properties in order for `APIURLBuilderProtocol` to work.
 
-The `APIURLBuilderProtocol` also contains some optional properties for which the implementation can be provided in each URLBuilder
+- The `APIURLBuilderProtocol` also contains some optional properties for which the implementation can be provided in each URLBuilder
 
 ```swift
 public protocol APIURLBuilderProtocol {
@@ -81,10 +82,11 @@ public protocol APIURLBuilderProtocol {
 }
 ```
 
-- Last step: Use URLBuilder to send server request and receive response
-There are two ways to send server requests
+**Last step**
+- Use URLBuilder to send server request and receive response
+- There are two ways to send server requests
 
-1- Using `async await`.
+- 1- Using `async await`.
 
 ```swift
 Task {
@@ -100,7 +102,7 @@ Task {
 }
 ```
 
-2- Using Closure callback.
+- 2- Using Closure callback.
 
 ```swift
 let builder = ExampleURLBuilder()
@@ -119,7 +121,7 @@ builder.fetch { response in
 
 ## Samples
 
-- APIErrors
+**APIErrors**
 ```swift
 public enum APIErrors: Error {
     case notFound /// incase of decoding if any key or value not found
